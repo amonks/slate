@@ -2,19 +2,12 @@
 title: API Reference
 
 language_tabs:
-  - js
+  - shell
 
 includes:
   - architecture
-  - server
-  - booths
   - plan
+  - booths
+  - server
 ---
 
-# Gifbooth
-
-These are my deliverables for Gifbooth Architecture Day 2015.
-
-```clojure
-(lets-go :ok)
-```
