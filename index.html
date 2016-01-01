@@ -8,12 +8,12 @@
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-      <script src="javascripts/all.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="javascripts/all_nosearch.js" type="text/javascript"></script>
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["shell"]);
         });
       </script>
   </head>
@@ -29,227 +29,521 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
         </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        
+          <h1 id="architecture">Architecture</h1>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<h2 id="goals">Goals</h2>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p>The gifbooth architecture has one primary design goal &ndash; flexibility, especially through the following means:</p>
+
+<ul>
+<li>Code sharing</li>
+<li>Modularity</li>
+<li>Well-defined client responsibilities</li>
+</ul>
+
+<p>We should be able to:</p>
+
+<ul>
+<li>Write image processes one time (bullet time, 3d, new shaders, ???) and have them work on any existing and potential clients.</li>
+<li>Quickly compose new clients from existing modules.</li>
+<li>Develop clients for environments with a wide range of capabilities: a website, a mobile app, a desktop app, or even videos sent in by MMS.</li>
+<li>Update one module and automatically pull the update into multiple clients.</li>
+</ul>
+
+<h2 id="clients">Clients</h2>
+
+<p>Users interact with Gifbooth <em>clients</em>. The clients, in turn, interact with the Gifbooth <em>server</em>. </p>
+
+<p>Gifbooth clients have the following responsibilites:</p>
+
+<ol>
+<li>Displaying events (ie the current gifbooth website)</li>
+<li>Capturing gifs</li>
+</ol>
+
+          <h1 id="plan">Plan</h1>
+
+<p>My research provided a pretty clear path, so there&rsquo;s less choice here than I anticipated.</p>
+
+<p>Here&rsquo;s the general order of operations:</p>
+
+<ol>
+<li>Update the server
+
+<ul>
+<li>Add the /event(s) endpoints</li>
+<li>Hook it into a database</li>
+<li>Start the /admin client</li>
+<li>Update the OF booth</li>
+</ul></li>
+<li>Booth.next (web or ios)
+
+<ul>
+<li>Add the /filter(s) endpoints</li>
+<li>web will generally run more snappily and be easier to make and will work on walls or browsers</li>
+<li>I&rsquo;d vote web but there isn&rsquo;t a &lsquo;wrong&rsquo; choice on technical grounds</li>
+</ul></li>
+<li>Booths.future (who even knows)</li>
+</ol>
+
+<p><strong>1</strong> will take a bit less than a week. Could get a start this weekend, put in an hour here-and-there before bed in NY, and be done by the time we see each other. That brings us to <strong>2</strong></p>
+
+<p>Once the real semester starts January 27th I work at about halfspeed (half a week per calendar week).</p>
+
+<p><strong>web</strong> will take about a week and a half. I could probably have it done by the first, with maybe some polishing by the 8th or 9th. Definitely in time for Jill Stuart, guaranteed.</p>
+
+<p><strong>iOS</strong> will probably take about two weeks. I&rsquo;m less experienced with native-ios-web-graphics than with straight-up-web-graphics, so I&rsquo;m not positive about this estimate. It could be a week and a half (more likely), it could be two and a half weeks (less likely). Factoring in school-halfspeed I wouldn&rsquo;t feel comfortable guaranteeing it for the Jill Stuart show, but it could quite possibly be done by the Jill Stuart show.</p>
+
+<p>If you end up wanting iOS <em>and</em> web, take a week off the time for whichever I build second. (eg two weeks for iOS then another 4 days to add web on, or a week and a half for web then another week to add iOS)</p>
+
+          <h1 id="viewers">Viewers</h1>
+
+<p>The admin, customer admin, and website clients can probably overlap like 80%</p>
+
+<h2 id="admin">Admin</h2>
+
+<p>We&rsquo;ll need an admin client for things like</p>
+
+<ul>
+<li>setting event information (filters, branding, tweet-settings)</li>
+<li>deleting particular gifs</li>
+<li>tracking stats?</li>
+</ul>
+
+<h2 id="customer-admin">Customer Admin</h2>
+
+<p>We might want an admin client for customers with things like</p>
+
+<ul>
+<li>promoting particular gifs to their twitter</li>
+<li>tracking stats?</li>
+<li>deleting particular gifs</li>
+</ul>
+
+<h2 id="website">Website</h2>
+
+<p>Of course, there&rsquo;s the main booth-display website at gifbooth.co</p>
+
+<h1 id="booths">Booths</h1>
+
+<p>Thanks to the growing reach of javascript, one codebase can target web, ios, android, mac, and windows. </p>
+
+<p>Once we have a booth, any future event can target that booth. Sell the whole package (website, app, physical booth), create (or choose) some filters, and deploy to <em>all of those booths</em> in seconds.</p>
+
+<h2 id="openframeworks-booth-c">Openframeworks-booth (C++)</h2>
+
+<p>This is the booth we already have, and it could be modified to work with the new server (except filter management) pretty darned easily [think hours not days. A freebie once the server is up].</p>
+
+<h2 id="web-booth">Web-booth</h2>
+
+<p>A kiosk-mode chrome window (rather than a native app) is the best solution going forward for desktop (mac-mini). </p>
+
+<p>By making web-booth, we&rsquo;ll also have made:</p>
+
+<ul>
+<li>a saleable online branded gifbooth-at-home experience</li>
+<li>an image processor that will run on the server
+
+<ul>
+<li>(which in turn makes something like an mms-booth super trivial (a day, tops)</li>
+</ul></li>
+</ul>
+
+<h2 id="mobile-booth">Mobile-booth</h2>
+
+<p>This booth could be used for putting an iPad on the wall at an event, or for selling an event-branded instagram-like booth app.</p>
+
+<p>React-native can generally target android and ios at the same time with minimal extra effort. Right now, the graphics capabilities of react-native on Android aren&rsquo;t quite where we want them, but they will be within a few months.</p>
+
+<h2 id="bullet-time-booth">Bullet-time-booth</h2>
+
+<p>This is actually a pretty straightforward one &lsquo;cuz it&rsquo;s so specialized. It wouldn&rsquo;t take more than a day to set up, but would require a lot of hardware setup. Get <em>n</em> raspberry pis with camera, print some proper cases, and have one pi coordinate the others. The shutter could be a button on a website/phone/wall/anything.</p>
+
+          <h1 id="server">Server</h1>
+
+<p>Users interact with Gifbooth <em>clients</em>. The clients, in turn, interact with the Gifbooth <em>server</em>. </p>
+
+<p>The server has the following primary responsibilites:</p>
+
+<ol>
+<li>Act as the <em>source of truth</em> for gif and event data.</li>
+<li>Act as <em>liason</em> between clients and other services (Facebook, Twitter, &hellip;).</li>
+<li>If requested by a client, process gifs (adding shaders and overlays and the like).</li>
+</ol>
+
+<aside class="notice">
+Most booth clients should be able to process gifs on their own, like the current OF client does, but sharing the image processing code with the server allows for surprisingly flexible potential client designs, like a remote booth over MMS, or adding graphics to images sent in over social media.
+</aside>
+
+<h2 id="api">API</h2>
+
+<p>Clients communicate with the Gifbooth server through a consistant HTTP API. </p>
+
+<p>Each API endpoint begins with the expected API version number.</p>
+
+<p>Every JSON endpoint will include a <code class="prettyprint">&quot;type&quot;</code> annotation.</p>
+
+<h2 id="authorization">Authorization</h2>
+
+<p>This API requires requests to be authorized with an active API key. Send it as an HTTP header with the name &lsquo;API-Key&rsquo;</p>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+</code></pre>
+
+<h2 id="get-post-gif-new">GET/POST <code class="prettyprint">/gif/new</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/new"</span>
+  -X POST
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+  -d <span class="s1">'{
+       "event": "gtm"
+     }'</span>
+</code></pre>
+
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>The above command will return JSON like the following</p>
 </blockquote>
-<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gif-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<p>Use this endpoint to create a new gif ID. </p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<p>This endpoint returns a unique identifier that can be used to upload a gif to S3.</p>
+
+<p>The identifier is created by hashing the event and a timestamp.</p>
+
+<h4 id="options">Options</h4>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>event</td>
+<td>event-slug</td>
+<td>optional identifying slug for the event this gif should be posted into. If not provided, the gif will be added to the most recent event.</td>
+</tr>
+</tbody></table>
+
+<aside class="info">
+Since filters and branding information will be stored on the server and passed to clients as needed, new events will require **no client changes**. A client can either provide an event selection (like multiple pages on a website, or a hidden menu in an ipad-app for wall) or simply use the branding from the most current event.
+</aside>
+
+<h2 id="get-post-gif-upload">GET/POST <code class="prettyprint">/gif/upload</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/upload"</span>
+  -X POST
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+  -d <span class="s1">'{
+       "id": "abc123"
+     }'</span>
 </code></pre>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+
+<p>Use this endpoint to tell the server a new gif has been uploaded to S3.</p>
+
+<p>This endpoint returns an empty document with an HTTP status code indicating the result. 200 for success, other codes for errors.</p>
+
+<h4 id="options">Options</h4>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>gif-id</td>
+<td>this must be an id generated by <code class="prettyprint">/gif/new</code></td>
+</tr>
+<tr>
+<td>filter</td>
+<td>filter-slug</td>
+<td>optional filter slug to be applied by the server</td>
+</tr>
+</tbody></table>
+
+<h2 id="redirect-gif-id-share-facebook">REDIRECT <code class="prettyprint">/gif/:id/share/facebook</code></h2>
+<pre class="highlight shell"><code>open <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/facebook"</span>
 </code></pre>
 
 <blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+<p>The above command returns JSON like the following:</p>
 </blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIFS: The Movie"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtm"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bcd234"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Haunted House Party"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"haunt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"cde345"</span><span class="w">
+      </span><span class="s2">"def456"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<aside class="info">
+This endpoint requires a user oauth login. It must be opened in a browser. It does not require an API key.
+</aside>
+
+<p>Use this endpoint to post a gif to a users&rsquo; Facebook.</p>
+
+<h2 id="redirect-gif-id-share-twitter">REDIRECT <code class="prettyprint">/gif/:id/share/twitter</code></h2>
+<pre class="highlight shell"><code>open <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/twitter?message=hello"</span>
+</code></pre>
+
+<aside class="info">
+This endpoint requires a user oauth login. It must be opened in a browser. It does not require an API key.
+</aside>
+
+<p>Use this endpoint to post a gif to a users&rsquo; Twitter.</p>
+
+<h3 id="options">Options</h3>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
+<th>key</th>
+<th>value</th>
+<th>option</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>message</td>
+<td>tweet text</td>
+<td>required tweet text</td>
 </tr>
 </tbody></table>
 
-<p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<h2 id="get-post-gif-id-share-email">GET/POST <code class="prettyprint">/gif/:id/share/email</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/email?to=email@example.com"</span>
+  -X POST
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+  -d <span class="s1">'{
+       "to: "user@example.com",
+       "to-name": "Stella",
+       "from": "user@example.org",
+       "from-name": "Marlon"
+     }'</span>
 </code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<p>Use this endpoint to email a gif.</p>
+
+<p>This endpoint returns an empty document with an HTTP status code indicating the result. 200 for success, other codes for errors.</p>
+
+<h4 id="options">Options</h4>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>to</td>
+<td>email address</td>
+<td>email of recipient</td>
+</tr>
+<tr>
+<td>to-name</td>
+<td>string</td>
+<td>name of recipient</td>
+</tr>
+<tr>
+<td>from</td>
+<td>email address</td>
+<td>email of sender</td>
+</tr>
+<tr>
+<td>from-name</td>
+<td>string</td>
+<td>name of sender</td>
+</tr>
+<tr>
+<td>message</td>
+<td>string</td>
+<td>optional message</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-post-gif-id-share-instagram">GET/POST <code class="prettyprint">/gif/:id/share/instagram</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/instagram?to=email@example.com"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
 </code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+
+<p>Use this endpoint to email a gif with instructions for posting it to Instagram.</p>
+
+<p>This endpoint returns an empty document with an HTTP status code indicating the result. 200 for success, other codes for errors.</p>
+
+<h4 id="options">Options</h4>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>to</td>
+<td>email address</td>
+<td>where to send the mp4</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-post-gif-id-share-mms">GET/POST <code class="prettyprint">/gif/:id/share/mms</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/mms?to=9782541779"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+</code></pre>
+
+<p>This endpoint sends a gif to the specified phone number.</p>
+
+<p>This endpoint returns an empty document with an HTTP status code indicating the result. 200 for success, other codes for errors.</p>
+
+<h4 id="options">Options</h4>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>to</td>
+<td>phone number</td>
+<td>where to send the mms</td>
+</tr>
+<tr>
+<td>message</td>
+<td>text</td>
+<td>optional message</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-post-gif-id-share-tumblr">GET/POST <code class="prettyprint">/gif/:id/share/tumblr</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/tumblr"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
 </code></pre>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns JSON like the following:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.tumblr.com/widgets/share/tool?posttype=photo&amp;tags=GIFbooth&amp;canonicalUrl=http://gifbooth.co&amp;content=http://gifs.gifbooth.co/675468527525040129.gif"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<p>Use this endpoint to get a url from which a user may publish a gif to their tumblr.</p>
 
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h2 id="get-post-events">GET/POST <code class="prettyprint">/events</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/events?gifs=true"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON like the following:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIFS: The Movie"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtm"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"bcd234"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Haunted House Party"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"haunt"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"cde345"</span><span class="w">
+      </span><span class="s2">"def456"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Use this endpoint to get a list of events.</p>
+
+<h4 id="options">Options</h4>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>key</th>
+<th>value</th>
+<th>option</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>gifs</td>
+<td>boolean</td>
+<td>enable or disable the listing of gifs</td>
 </tr>
 </tbody></table>
 
-          <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
+<h2 id="event-slug"><code class="prettyprint">/event/:slug</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/event/gtm"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+</code></pre>
 
-<p>The Kittn API uses the following error codes:</p>
+<blockquote>
+<p>The above command returns JSON like the following:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIFS: The Movie"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtm"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bcd234"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
-</tr>
-</tbody></table>
+<p>Use this endpoint to get information about a particular event.</p>
+
+<h2 id="to-be-added">to be added</h2>
+
+<ul>
+<li><code class="prettyprint">/filters</code> list of all</li>
+<li><code class="prettyprint">/filter/:slug</code> info: title, attribution, type, data</li>
+<li><code class="prettyprint">/filter/new</code></li>
+<li><code class="prettyprint">/event/:new</code></li>
+<li>PUT <code class="prettyprint">/event/slug</code> (update)</li>
+<li>DELETE endpoints</li>
+</ul>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
           </div>
       </div>
     </div>
