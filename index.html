@@ -26,7 +26,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/logo.jpg" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -58,16 +58,9 @@
 <li>Update one module and automatically pull the update into multiple clients.</li>
 </ul>
 
-<h2 id="clients">Clients</h2>
+<h2 id="structure">Structure</h2>
 
-<p>Users interact with Gifbooth <em>clients</em>. The clients, in turn, interact with the Gifbooth <em>server</em>. </p>
-
-<p>Gifbooth clients have the following responsibilites:</p>
-
-<ol>
-<li>Displaying events (ie the current gifbooth website)</li>
-<li>Capturing gifs</li>
-</ol>
+<p><svg width="638pt" height="290pt" viewBox="0.00 0.00 638.00 290.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 286)"><title>%3</title><polygon fill="white" stroke="none" points="-4,4 -4,-286 634,-286 634,4 -4,4"/><g id="clust1" class="cluster"><title>cluster_clients</title><polygon fill="none" stroke="black" points="8,-164 8,-238 258,-238 258,-164 8,-164"/><text text-anchor="middle" x="133" y="-222.8" font-family="Times,serif" font-size="14.00">clients</text></g><g id="clust2" class="cluster"><title>cluster_social</title><polygon fill="none" stroke="black" points="258,-8 258,-82 622,-82 622,-8 258,-8"/><text text-anchor="middle" x="440" y="-66.8" font-family="Times,serif" font-size="14.00">social</text></g><g id="clust3" class="cluster"><title>cluster_cloud</title><polygon fill="none" stroke="black" points="80,-8 80,-156 250,-156 250,-8 80,-8"/><text text-anchor="middle" x="165" y="-140.8" font-family="Times,serif" font-size="14.00">cloud</text></g>&lt;!&ndash; users &ndash;&gt;<g id="node1" class="node"><title>users</title><ellipse fill="none" stroke="black" cx="96" cy="-264" rx="28.0651" ry="18"/><text text-anchor="middle" x="96" y="-259.8" font-family="Times,serif" font-size="14.00">users</text></g>&lt;!&ndash; website &ndash;&gt;<g id="node3" class="node"><title>website</title><ellipse fill="none" stroke="black" cx="53" cy="-190" rx="37.2421" ry="18"/><text text-anchor="middle" x="53" y="-185.8" font-family="Times,serif" font-size="14.00">website</text></g>&lt;!&ndash; users&#45;&gt;website &ndash;&gt;<g id="edge2" class="edge"><title>users&#45;&gt;website</title><path fill="none" stroke="black" d="M86.4569,-247.021C81.0221,-237.921 74.0926,-226.318 67.9512,-216.035"/><polygon fill="black" stroke="black" points="70.9469,-214.224 62.8145,-207.434 64.9371,-217.814 70.9469,-214.224"/></g>&lt;!&ndash; booth &ndash;&gt;<g id="node4" class="node"><title>booth</title><ellipse fill="none" stroke="black" cx="138" cy="-190" rx="30.0035" ry="18"/><text text-anchor="middle" x="138" y="-185.8" font-family="Times,serif" font-size="14.00">booth</text></g>&lt;!&ndash; users&#45;&gt;booth &ndash;&gt;<g id="edge3" class="edge"><title>users&#45;&gt;booth</title><path fill="none" stroke="black" d="M105.53,-246.662C110.793,-237.641 117.442,-226.243 123.35,-216.114"/><polygon fill="black" stroke="black" points="126.492,-217.675 128.507,-207.273 120.445,-214.147 126.492,-217.675"/></g>&lt;!&ndash; pablo &ndash;&gt;<g id="node2" class="node"><title>pablo</title><ellipse fill="none" stroke="black" cx="218" cy="-264" rx="29.5104" ry="18"/><text text-anchor="middle" x="218" y="-259.8" font-family="Times,serif" font-size="14.00">pablo</text></g>&lt;!&ndash; admin &ndash;&gt;<g id="node5" class="node"><title>admin</title><ellipse fill="none" stroke="black" cx="218" cy="-190" rx="32.4237" ry="18"/><text text-anchor="middle" x="218" y="-185.8" font-family="Times,serif" font-size="14.00">admin</text></g>&lt;!&ndash; pablo&#45;&gt;admin &ndash;&gt;<g id="edge4" class="edge"><title>pablo&#45;&gt;admin</title><path fill="none" stroke="black" d="M218,-245.937C218,-237.807 218,-227.876 218,-218.705"/><polygon fill="black" stroke="black" points="221.5,-218.441 218,-208.441 214.5,-218.441 221.5,-218.441"/></g>&lt;!&ndash; server &ndash;&gt;<g id="node10" class="node"><title>server</title><ellipse fill="none" stroke="black" cx="210" cy="-108" rx="31.9219" ry="18"/><text text-anchor="middle" x="210" y="-103.8" font-family="Times,serif" font-size="14.00">server</text></g>&lt;!&ndash; website&#45;&gt;server &ndash;&gt;<g id="edge10" class="edge"><title>website&#45;&gt;server</title><path fill="none" stroke="black" d="M76.7834,-175.852C83.8992,-171.979 91.74,-167.77 99,-164 125.221,-150.385 155.264,-135.544 177.477,-124.714"/><polygon fill="black" stroke="black" points="179.022,-127.855 186.483,-120.333 175.96,-121.56 179.022,-127.855"/></g>&lt;!&ndash; s3 &ndash;&gt;<g id="node11" class="node"><title>s3</title><ellipse fill="none" stroke="black" cx="115" cy="-34" rx="27" ry="18"/><text text-anchor="middle" x="115" y="-29.8" font-family="Times,serif" font-size="14.00">s3</text></g>&lt;!&ndash; website&#45;&gt;s3 &ndash;&gt;<g id="edge12" class="edge"><title>website&#45;&gt;s3</title><path fill="none" stroke="black" d="M59.7531,-172.226C70.5147,-145.496 91.6408,-93.0213 104.422,-61.2737"/><polygon fill="black" stroke="black" points="107.767,-62.3368 108.255,-51.7532 101.274,-59.7225 107.767,-62.3368"/></g>&lt;!&ndash; booth&#45;&gt;server &ndash;&gt;<g id="edge9" class="edge"><title>booth&#45;&gt;server</title><path fill="none" stroke="black" d="M151.882,-173.575C162.54,-161.733 177.421,-145.199 189.456,-131.827"/><polygon fill="black" stroke="black" points="192.072,-134.152 196.16,-124.377 186.869,-129.469 192.072,-134.152"/></g>&lt;!&ndash; booth&#45;&gt;s3 &ndash;&gt;<g id="edge11" class="edge"><title>booth&#45;&gt;s3</title><path fill="none" stroke="black" d="M135.451,-171.931C131.479,-145.335 123.778,-93.7765 119.043,-62.0717"/><polygon fill="black" stroke="black" points="122.5,-61.5188 117.561,-52.1455 115.576,-62.5529 122.5,-61.5188"/></g>&lt;!&ndash; admin&#45;&gt;server &ndash;&gt;<g id="edge1" class="edge"><title>admin&#45;&gt;server</title><path fill="none" stroke="black" d="M216.264,-171.641C215.23,-161.297 213.894,-147.941 212.722,-136.221"/><polygon fill="black" stroke="black" points="216.183,-135.652 211.705,-126.05 209.218,-136.349 216.183,-135.652"/></g>&lt;!&ndash; admin&#45;&gt;s3 &ndash;&gt;<g id="edge14" class="edge"><title>admin&#45;&gt;s3</title><path fill="none" stroke="black" d="M196.667,-176.269C185.473,-169.275 173.223,-161.025 169,-156 156.367,-140.969 136.572,-92.1831 124.782,-61.3415"/><polygon fill="black" stroke="black" points="127.926,-59.7589 121.113,-51.6447 121.379,-62.2363 127.926,-59.7589"/></g>&lt;!&ndash; facebook &ndash;&gt;<g id="node6" class="node"><title>facebook</title><ellipse fill="none" stroke="black" cx="571" cy="-34" rx="42.5283" ry="18"/><text text-anchor="middle" x="571" y="-29.8" font-family="Times,serif" font-size="14.00">facebook</text></g>&lt;!&ndash; twitter &ndash;&gt;<g id="node7" class="node"><title>twitter</title><ellipse fill="none" stroke="black" cx="477" cy="-34" rx="33.3839" ry="18"/><text text-anchor="middle" x="477" y="-29.8" font-family="Times,serif" font-size="14.00">twitter</text></g>&lt;!&ndash; twilio &ndash;&gt;<g id="node8" class="node"><title>twilio</title><ellipse fill="none" stroke="black" cx="395" cy="-34" rx="30.988" ry="18"/><text text-anchor="middle" x="395" y="-29.8" font-family="Times,serif" font-size="14.00">twilio</text></g>&lt;!&ndash; mandrill &ndash;&gt;<g id="node9" class="node"><title>mandrill</title><ellipse fill="none" stroke="black" cx="306" cy="-34" rx="40.1403" ry="18"/><text text-anchor="middle" x="306" y="-29.8" font-family="Times,serif" font-size="14.00">mandrill</text></g>&lt;!&ndash; server&#45;&gt;facebook &ndash;&gt;<g id="edge5" class="edge"><title>server&#45;&gt;facebook</title><path fill="none" stroke="black" d="M241.824,-106.993C310.391,-106.565 469.84,-103.24 519,-82 531.044,-76.7965 542.166,-67.6399 551.007,-58.7826"/><polygon fill="black" stroke="black" points="553.553,-61.1835 557.867,-51.5064 548.46,-56.3816 553.553,-61.1835"/></g>&lt;!&ndash; server&#45;&gt;twitter &ndash;&gt;<g id="edge6" class="edge"><title>server&#45;&gt;twitter</title><path fill="none" stroke="black" d="M241.812,-106.243C295.648,-104.507 402.076,-98.977 435,-82 445.171,-76.7552 454.041,-67.9521 460.976,-59.3732"/><polygon fill="black" stroke="black" points="463.803,-61.4377 467.011,-51.3403 458.206,-57.2332 463.803,-61.4377"/></g>&lt;!&ndash; server&#45;&gt;twilio &ndash;&gt;<g id="edge7" class="edge"><title>server&#45;&gt;twilio</title><path fill="none" stroke="black" d="M241.771,-107.61C272.624,-106.86 319.827,-102.055 355,-82 364.494,-76.5865 372.773,-68.0256 379.297,-59.6847"/><polygon fill="black" stroke="black" points="382.168,-61.6884 385.217,-51.5418 376.506,-57.5722 382.168,-61.6884"/></g>&lt;!&ndash; server&#45;&gt;mandrill &ndash;&gt;<g id="edge8" class="edge"><title>server&#45;&gt;mandrill</title><path fill="none" stroke="black" d="M232.971,-95.1949C239.924,-91.295 247.449,-86.7347 254,-82 263.968,-74.7962 274.169,-65.9554 282.867,-57.8927"/><polygon fill="black" stroke="black" points="285.527,-60.1935 290.382,-50.7762 280.714,-55.1109 285.527,-60.1935"/></g>&lt;!&ndash; server&#45;&gt;s3 &ndash;&gt;<g id="edge13" class="edge"><title>server&#45;&gt;s3</title><path fill="none" stroke="black" d="M184.095,-97.527C170.92,-92.4147 156.541,-86.2914 151,-82 143.003,-75.8068 135.835,-67.4301 130.04,-59.4636"/><polygon fill="black" stroke="black" points="132.853,-57.3774 124.316,-51.103 127.077,-61.3318 132.853,-57.3774"/></g>&lt;!&ndash; database &ndash;&gt;<g id="node12" class="node"><title>database</title><ellipse fill="none" stroke="black" cx="201" cy="-34" rx="40.5989" ry="18"/><text text-anchor="middle" x="201" y="-29.8" font-family="Times,serif" font-size="14.00">database</text></g>&lt;!&ndash; server&#45;&gt;database &ndash;&gt;<g id="edge15" class="edge"><title>server&#45;&gt;database</title><path fill="none" stroke="black" d="M207.867,-89.937C206.84,-81.7188 205.583,-71.66 204.426,-62.4059"/><polygon fill="black" stroke="black" points="207.893,-61.9293 203.18,-52.4407 200.948,-62.7976 207.893,-61.9293"/></g></g></svg></p>
 
           <h1 id="plan">Plan</h1>
 
@@ -189,8 +182,6 @@ Most booth clients should be able to process gifs on their own, like the current
 
 <p>Each API endpoint begins with the expected API version number.</p>
 
-<p>Every JSON endpoint will include a <code class="prettyprint">&quot;type&quot;</code> annotation.</p>
-
 <h2 id="authorization">Authorization</h2>
 
 <p>This API requires requests to be authorized with an active API key. Send it as an HTTP header with the name &lsquo;API-Key&rsquo;</p>
@@ -198,20 +189,32 @@ Most booth clients should be able to process gifs on their own, like the current
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
 </code></pre>
 
-<h2 id="get-post-gif-new">GET/POST <code class="prettyprint">/gif/new</code></h2>
-<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/new"</span>
-  -X POST
+<h2 id="todo">todo</h2>
+
+<ul>
+<li>Make gifs objects with metadata rather than just IDs
+
+<ul>
+<li>timestamp</li>
+<li>shares?</li>
+<li>event</li>
+<li>filter</li>
+</ul></li>
+</ul>
+
+<h2 id="get-gifs">GET <code class="prettyprint">/gifs</code></h2>
+
+<p>TODO</p>
+
+<h2 id="get-gif-new-id">GET <code class="prettyprint">/gif/new-id</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/new-id"</span>
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
-  -d <span class="s1">'{
-       "event": "gtm"
-     }'</span>
 </code></pre>
 
 <blockquote>
 <p>The above command will return JSON like the following</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gif-id"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -220,29 +223,7 @@ Most booth clients should be able to process gifs on their own, like the current
 
 <p>This endpoint returns a unique identifier that can be used to upload a gif to S3.</p>
 
-<p>The identifier is created by hashing the event and a timestamp.</p>
-
-<h4 id="options">Options</h4>
-
-<table><thead>
-<tr>
-<th>key</th>
-<th>value</th>
-<th>option</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>event</td>
-<td>event-slug</td>
-<td>optional identifying slug for the event this gif should be posted into. If not provided, the gif will be added to the most recent event.</td>
-</tr>
-</tbody></table>
-
-<aside class="info">
-Since filters and branding information will be stored on the server and passed to clients as needed, new events will require **no client changes**. A client can either provide an event selection (like multiple pages on a website, or a hidden menu in an ipad-app for wall) or simply use the branding from the most current event.
-</aside>
-
-<h2 id="get-post-gif-upload">GET/POST <code class="prettyprint">/gif/upload</code></h2>
+<h2 id="post-gif-new">POST <code class="prettyprint">/gif/new</code></h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/upload"</span>
   -X POST
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
@@ -255,7 +236,7 @@ Since filters and branding information will be stored on the server and passed t
 
 <p>This endpoint returns an empty document with an HTTP status code indicating the result. 200 for success, other codes for errors.</p>
 
-<h4 id="options">Options</h4>
+<h3 id="options">Options</h3>
 
 <table><thead>
 <tr>
@@ -266,15 +247,31 @@ Since filters and branding information will be stored on the server and passed t
 </thead><tbody>
 <tr>
 <td>id</td>
-<td>gif-id</td>
+<td>string</td>
 <td>this must be an id generated by <code class="prettyprint">/gif/new</code></td>
 </tr>
 <tr>
-<td>filter</td>
-<td>filter-slug</td>
-<td>optional filter slug to be applied by the server</td>
+<td>event</td>
+<td>string</td>
+<td>optional event to add this gif to</td>
 </tr>
 </tbody></table>
+
+<aside class="info">
+Since filters and branding information will be stored on the server and passed to clients as needed, new events will require **no client changes**. A client can either provide an event selection (like multiple pages on a website, or a hidden menu in an ipad-app for wall) or simply use the branding from the most current event.
+</aside>
+
+<h2 id="get-gif-id">GET <code class="prettyprint">/gif/:id</code></h2>
+
+<p>TODO</p>
+
+<h2 id="put-gif-id">PUT <code class="prettyprint">/gif/:id</code></h2>
+
+<p>TODO</p>
+
+<h2 id="delete-gif-id">DELETE <code class="prettyprint">/gif/:id</code></h2>
+
+<p>TODO</p>
 
 <h2 id="redirect-gif-id-share-facebook">REDIRECT <code class="prettyprint">/gif/:id/share/facebook</code></h2>
 <pre class="highlight shell"><code>open <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/facebook"</span>
@@ -285,7 +282,6 @@ Since filters and branding information will be stored on the server and passed t
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIFS: The Movie"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtm"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -294,7 +290,6 @@ Since filters and branding information will be stored on the server and passed t
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Haunted House Party"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"haunt"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -337,7 +332,7 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 </tr>
 </tbody></table>
 
-<h2 id="get-post-gif-id-share-email">GET/POST <code class="prettyprint">/gif/:id/share/email</code></h2>
+<h2 id="post-gif-id-share-email">POST <code class="prettyprint">/gif/:id/share/email</code></h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/email?to=email@example.com"</span>
   -X POST
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
@@ -353,7 +348,7 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 
 <p>This endpoint returns an empty document with an HTTP status code indicating the result. 200 for success, other codes for errors.</p>
 
-<h4 id="options">Options</h4>
+<h3 id="options">Options</h3>
 
 <table><thead>
 <tr>
@@ -389,7 +384,7 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 </tr>
 </tbody></table>
 
-<h2 id="get-post-gif-id-share-instagram">GET/POST <code class="prettyprint">/gif/:id/share/instagram</code></h2>
+<h2 id="post-gif-id-share-instagram">POST <code class="prettyprint">/gif/:id/share/instagram</code></h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/instagram?to=email@example.com"</span>
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
 </code></pre>
@@ -398,7 +393,7 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 
 <p>This endpoint returns an empty document with an HTTP status code indicating the result. 200 for success, other codes for errors.</p>
 
-<h4 id="options">Options</h4>
+<h3 id="options">Options</h3>
 
 <table><thead>
 <tr>
@@ -414,7 +409,7 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 </tr>
 </tbody></table>
 
-<h2 id="get-post-gif-id-share-mms">GET/POST <code class="prettyprint">/gif/:id/share/mms</code></h2>
+<h2 id="post-gif-id-share-mms">POST <code class="prettyprint">/gif/:id/share/mms</code></h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/mms?to=9782541779"</span>
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
 </code></pre>
@@ -423,7 +418,7 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 
 <p>This endpoint returns an empty document with an HTTP status code indicating the result. 200 for success, other codes for errors.</p>
 
-<h4 id="options">Options</h4>
+<h3 id="options">Options</h3>
 
 <table><thead>
 <tr>
@@ -444,7 +439,7 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 </tr>
 </tbody></table>
 
-<h2 id="get-post-gif-id-share-tumblr">GET/POST <code class="prettyprint">/gif/:id/share/tumblr</code></h2>
+<h2 id="post-gif-id-share-tumblr">POST <code class="prettyprint">/gif/:id/share/tumblr</code></h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/abc123/share/tumblr"</span>
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
 </code></pre>
@@ -453,14 +448,13 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 <p>The above command returns JSON like the following:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"url"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.tumblr.com/widgets/share/tool?posttype=photo&amp;tags=GIFbooth&amp;canonicalUrl=http://gifbooth.co&amp;content=http://gifs.gifbooth.co/675468527525040129.gif"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
 <p>Use this endpoint to get a url from which a user may publish a gif to their tumblr.</p>
 
-<h2 id="get-post-events">GET/POST <code class="prettyprint">/events</code></h2>
+<h2 id="get-events">GET <code class="prettyprint">/events</code></h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/events?gifs=true"</span>
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
 </code></pre>
@@ -470,21 +464,26 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIFS: The Movie"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtm"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"bcd234"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"brandimage"</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Haunted House Party"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"haunt"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"cde345"</span><span class="w">
       </span><span class="s2">"def456"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"glitch"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"brandimage"</span><span class="w">
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
@@ -492,7 +491,7 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 
 <p>Use this endpoint to get a list of events.</p>
 
-<h4 id="options">Options</h4>
+<h3 id="options">Options</h3>
 
 <table><thead>
 <tr>
@@ -508,7 +507,11 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 </tr>
 </tbody></table>
 
-<h2 id="event-slug"><code class="prettyprint">/event/:slug</code></h2>
+<h2 id="post-event-new">POST <code class="prettyprint">/event/new</code></h2>
+
+<p>TODO</p>
+
+<h2 id="get-event-slug">GET <code class="prettyprint">/event/:slug</code></h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/event/gtm"</span>
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
 </code></pre>
@@ -517,7 +520,6 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 <p>The above command returns JSON like the following:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"event"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GIFS: The Movie"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gtm"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"gifs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -529,16 +531,124 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 
 <p>Use this endpoint to get information about a particular event.</p>
 
-<h2 id="to-be-added">to be added</h2>
+<h2 id="put-event-slug">PUT <code class="prettyprint">/event/:slug</code></h2>
 
-<ul>
-<li><code class="prettyprint">/filters</code> list of all</li>
-<li><code class="prettyprint">/filter/:slug</code> info: title, attribution, type, data</li>
-<li><code class="prettyprint">/filter/new</code></li>
-<li><code class="prettyprint">/event/:new</code></li>
-<li>PUT <code class="prettyprint">/event/slug</code> (update)</li>
-<li>DELETE endpoints</li>
-</ul>
+<p>TODO</p>
+
+<h2 id="delete-event-slug">DELETE <code class="prettyprint">/event/:slug</code></h2>
+
+<p>TODO</p>
+
+<h2 id="get-filters">GET <code class="prettyprint">/filters</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/filters"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON like the following:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"overlay"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brand Logo"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"glitch"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://filters.gifbooth.co/brandlogo.png"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shader"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"glitch"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"glitch"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://filters.gifbooth.co/glitch.glsl"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p>Use this endpoint to get a list of filters.</p>
+
+<h2 id="post-filter-new">POST <code class="prettyprint">/filter/new</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/filter/new"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+  -X POST
+  -d <span class="s2">"{
+        "</span><span class="nb">type</span><span class="s2">": "</span>overlay<span class="s2">",
+        "</span>name<span class="s2">": "</span>Brand Logo<span class="s2">",
+        "</span>slug<span class="s2">": "</span>glitch<span class="s2">",
+        "</span>url<span class="s2">": "</span>http://filters.gifbooth.co/brandlogo.png<span class="s2">"
+      }"</span>
+</code></pre>
+
+<p>Use this endpoint to create a new filter.</p>
+
+<h3 id="options">Options</h3>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>filter type</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>filter title</td>
+</tr>
+<tr>
+<td>data</td>
+<td>???</td>
+<td>depends on the type of filter, a png for overlays or glsl for a shader</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-filter-slug">GET <code class="prettyprint">/filter/:slug</code></h2>
+
+<p>TODO</p>
+
+<h2 id="put-filter-filter-slug">PUT <code class="prettyprint">/filter/:filter-slug</code></h2>
+
+<p>TODO</p>
+
+<h2 id="delete-filter-slug">DELETE <code class="prettyprint">/filter/:slug</code></h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/filter/brandlogo"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+  -X POST
+  -d <span class="s2">"{
+        "</span>name<span class="s2">": "</span>Gifs: The Movie logo<span class="s2">"
+      }"</span>
+</code></pre>
+
+<p>Use this endpoint to update a filter.</p>
+
+<h3 id="options">Options</h3>
+
+<table><thead>
+<tr>
+<th>key</th>
+<th>value</th>
+<th>option</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>filter type</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>filter title</td>
+</tr>
+<tr>
+<td>data</td>
+<td>???</td>
+<td>depends on the type of filter, a png for overlays or glsl for a shader</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
