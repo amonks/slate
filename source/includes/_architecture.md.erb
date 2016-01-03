@@ -33,8 +33,7 @@ digraph {
     label="social";
     facebook;
     twitter;
-    twilio;
-    mandrill;
+    etc;
   }
 
   subgraph cluster_cloud {
@@ -51,14 +50,9 @@ digraph {
   users    -> booth;
   pablo   -> admin;
 
-  // users    -> facebook;
   server  -> facebook;
-  // users    -> twitter;
   server  -> twitter;
-  // users    -> twilio;
-  server  -> twilio;
-  // users    -> mandrill;
-  server  -> mandrill;
+  server  -> etc;
 
   booth   -> server;
   website -> server;
