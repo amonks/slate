@@ -1,0 +1,24 @@
+# Admin
+
+<%= partial "includes/planned" %>
+
+The admin client, viewers, and booths are all essentially different interfaces for communicating with the server, each tuned for a particular set of tasks.
+
+We'll need an admin client [think website] for things like
+
+* setting event information (filters, branding, tweet-settings)
+* deleting particular gifs
+* tracking stats?
+
+## New Event Workflow
+
+Let's say a customer calls up and wants a gifbooth at an event. Here are the steps that must take place.
+
+1. Log into the admin website
+2. Click 'new event'
+    1. Enter metadata like date, title, links, or custom css
+    2. Select existing filters from a list and/or upload some new ones
+    3. Maybe create a login for the customer where they can promote gifs [...]
+3. Install and plug in the booth
+    1. The booth will automatically adopt the settings of the most current event, by date. If there are multiple events at once (permanent installation?), log into the *booth's* admin website and choose the correct event from a list.
+

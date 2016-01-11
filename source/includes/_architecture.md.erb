@@ -14,8 +14,11 @@ We should be able to:
 * Quickly compose new clients from existing modules.
 * Develop clients for environments with a wide range of capabilities: a website, a mobile app, a desktop app, or even videos sent in by MMS.
 * Update one module and automatically pull the update into multiple clients.
+* Scale: if a customer wants 10 booths, or if we run multiple events at once it shouldn't be a problem.
 
 ## Structure
+
+This directed graph indicates which components talk to // know about which other components. For example, users know about and manipulate the website and the booth itself. By centralizing as much functionality in the server as possible, *it* can manipulate many resources but other components only have to manipulate *it*.
 
 <% graphviz do %>
 digraph {

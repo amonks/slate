@@ -8,6 +8,9 @@ includes:
   - architecture
   - plan
   - booths
+  - admin
   - server
+
+search: true
 ---
 
