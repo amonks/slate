@@ -9,7 +9,7 @@
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src="javascripts/all_nosearch.js" type="text/javascript"></script>
+      <script src="javascripts/all.js" type="text/javascript"></script>
 
       <script>
         $(function() {
@@ -30,6 +30,10 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <div id="toc">
       </div>
     </div>
@@ -56,9 +60,12 @@
 <li>Quickly compose new clients from existing modules.</li>
 <li>Develop clients for environments with a wide range of capabilities: a website, a mobile app, a desktop app, or even videos sent in by MMS.</li>
 <li>Update one module and automatically pull the update into multiple clients.</li>
+<li>Scale: if a customer wants 10 booths, or if we run multiple events at once it shouldn&rsquo;t be a problem.</li>
 </ul>
 
 <h2 id="structure">Structure</h2>
+
+<p>This directed graph indicates which components talk to // know about which other components. For example, users know about and manipulate the website and the booth itself. By centralizing as much functionality in the server as possible, <em>it</em> can manipulate many resources but other components only have to manipulate <em>it</em>.</p>
 
 <p><svg width="532pt" height="290pt" viewBox="0.00 0.00 532.00 290.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 286)"><title>%3</title><polygon fill="white" stroke="none" points="-4,4 -4,-286 528,-286 528,4 -4,4"/><g id="clust1" class="cluster"><title>cluster_clients</title><polygon fill="none" stroke="black" points="8,-164 8,-238 258,-238 258,-164 8,-164"/><text text-anchor="middle" x="133" y="-222.8" font-family="Times,serif" font-size="14.00">clients</text></g><g id="clust2" class="cluster"><title>cluster_social</title><polygon fill="none" stroke="black" points="258,-8 258,-82 516,-82 516,-8 258,-8"/><text text-anchor="middle" x="387" y="-66.8" font-family="Times,serif" font-size="14.00">social</text></g><g id="clust3" class="cluster"><title>cluster_cloud</title><polygon fill="none" stroke="black" points="80,-8 80,-156 250,-156 250,-8 80,-8"/><text text-anchor="middle" x="165" y="-140.8" font-family="Times,serif" font-size="14.00">cloud</text></g>&lt;!&ndash; users &ndash;&gt;<g id="node1" class="node"><title>users</title><ellipse fill="none" stroke="black" cx="96" cy="-264" rx="28.0651" ry="18"/><text text-anchor="middle" x="96" y="-259.8" font-family="Times,serif" font-size="14.00">users</text></g>&lt;!&ndash; website &ndash;&gt;<g id="node3" class="node"><title>website</title><ellipse fill="none" stroke="black" cx="53" cy="-190" rx="37.2421" ry="18"/><text text-anchor="middle" x="53" y="-185.8" font-family="Times,serif" font-size="14.00">website</text></g>&lt;!&ndash; users&#45;&gt;website &ndash;&gt;<g id="edge2" class="edge"><title>users&#45;&gt;website</title><path fill="none" stroke="black" d="M86.4569,-247.021C81.0221,-237.921 74.0926,-226.318 67.9512,-216.035"/><polygon fill="black" stroke="black" points="70.9469,-214.224 62.8145,-207.434 64.9371,-217.814 70.9469,-214.224"/></g>&lt;!&ndash; booth &ndash;&gt;<g id="node4" class="node"><title>booth</title><ellipse fill="none" stroke="black" cx="138" cy="-190" rx="30.0035" ry="18"/><text text-anchor="middle" x="138" y="-185.8" font-family="Times,serif" font-size="14.00">booth</text></g>&lt;!&ndash; users&#45;&gt;booth &ndash;&gt;<g id="edge3" class="edge"><title>users&#45;&gt;booth</title><path fill="none" stroke="black" d="M105.53,-246.662C110.793,-237.641 117.442,-226.243 123.35,-216.114"/><polygon fill="black" stroke="black" points="126.492,-217.675 128.507,-207.273 120.445,-214.147 126.492,-217.675"/></g>&lt;!&ndash; pablo &ndash;&gt;<g id="node2" class="node"><title>pablo</title><ellipse fill="none" stroke="black" cx="218" cy="-264" rx="29.5104" ry="18"/><text text-anchor="middle" x="218" y="-259.8" font-family="Times,serif" font-size="14.00">pablo</text></g>&lt;!&ndash; admin &ndash;&gt;<g id="node5" class="node"><title>admin</title><ellipse fill="none" stroke="black" cx="218" cy="-190" rx="32.4237" ry="18"/><text text-anchor="middle" x="218" y="-185.8" font-family="Times,serif" font-size="14.00">admin</text></g>&lt;!&ndash; pablo&#45;&gt;admin &ndash;&gt;<g id="edge4" class="edge"><title>pablo&#45;&gt;admin</title><path fill="none" stroke="black" d="M218,-245.937C218,-237.807 218,-227.876 218,-218.705"/><polygon fill="black" stroke="black" points="221.5,-218.441 218,-208.441 214.5,-218.441 221.5,-218.441"/></g>&lt;!&ndash; server &ndash;&gt;<g id="node9" class="node"><title>server</title><ellipse fill="none" stroke="black" cx="210" cy="-108" rx="31.9219" ry="18"/><text text-anchor="middle" x="210" y="-103.8" font-family="Times,serif" font-size="14.00">server</text></g>&lt;!&ndash; website&#45;&gt;server &ndash;&gt;<g id="edge9" class="edge"><title>website&#45;&gt;server</title><path fill="none" stroke="black" d="M76.7834,-175.852C83.8992,-171.979 91.74,-167.77 99,-164 125.221,-150.385 155.264,-135.544 177.477,-124.714"/><polygon fill="black" stroke="black" points="179.022,-127.855 186.483,-120.333 175.96,-121.56 179.022,-127.855"/></g>&lt;!&ndash; s3 &ndash;&gt;<g id="node10" class="node"><title>s3</title><ellipse fill="none" stroke="black" cx="115" cy="-34" rx="27" ry="18"/><text text-anchor="middle" x="115" y="-29.8" font-family="Times,serif" font-size="14.00">s3</text></g>&lt;!&ndash; website&#45;&gt;s3 &ndash;&gt;<g id="edge11" class="edge"><title>website&#45;&gt;s3</title><path fill="none" stroke="black" d="M59.7531,-172.226C70.5147,-145.496 91.6408,-93.0213 104.422,-61.2737"/><polygon fill="black" stroke="black" points="107.767,-62.3368 108.255,-51.7532 101.274,-59.7225 107.767,-62.3368"/></g>&lt;!&ndash; booth&#45;&gt;server &ndash;&gt;<g id="edge8" class="edge"><title>booth&#45;&gt;server</title><path fill="none" stroke="black" d="M151.882,-173.575C162.54,-161.733 177.421,-145.199 189.456,-131.827"/><polygon fill="black" stroke="black" points="192.072,-134.152 196.16,-124.377 186.869,-129.469 192.072,-134.152"/></g>&lt;!&ndash; booth&#45;&gt;s3 &ndash;&gt;<g id="edge10" class="edge"><title>booth&#45;&gt;s3</title><path fill="none" stroke="black" d="M135.451,-171.931C131.479,-145.335 123.778,-93.7765 119.043,-62.0717"/><polygon fill="black" stroke="black" points="122.5,-61.5188 117.561,-52.1455 115.576,-62.5529 122.5,-61.5188"/></g>&lt;!&ndash; admin&#45;&gt;server &ndash;&gt;<g id="edge1" class="edge"><title>admin&#45;&gt;server</title><path fill="none" stroke="black" d="M216.264,-171.641C215.23,-161.297 213.894,-147.941 212.722,-136.221"/><polygon fill="black" stroke="black" points="216.183,-135.652 211.705,-126.05 209.218,-136.349 216.183,-135.652"/></g>&lt;!&ndash; admin&#45;&gt;s3 &ndash;&gt;<g id="edge13" class="edge"><title>admin&#45;&gt;s3</title><path fill="none" stroke="black" d="M196.667,-176.269C185.473,-169.275 173.223,-161.025 169,-156 156.367,-140.969 136.572,-92.1831 124.782,-61.3415"/><polygon fill="black" stroke="black" points="127.926,-59.7589 121.113,-51.6447 121.379,-62.2363 127.926,-59.7589"/></g>&lt;!&ndash; facebook &ndash;&gt;<g id="node6" class="node"><title>facebook</title><ellipse fill="none" stroke="black" cx="393" cy="-34" rx="42.5283" ry="18"/><text text-anchor="middle" x="393" y="-29.8" font-family="Times,serif" font-size="14.00">facebook</text></g>&lt;!&ndash; twitter &ndash;&gt;<g id="node7" class="node"><title>twitter</title><ellipse fill="none" stroke="black" cx="299" cy="-34" rx="33.3839" ry="18"/><text text-anchor="middle" x="299" y="-29.8" font-family="Times,serif" font-size="14.00">twitter</text></g>&lt;!&ndash; etc &ndash;&gt;<g id="node8" class="node"><title>etc</title><ellipse fill="none" stroke="black" cx="481" cy="-34" rx="27" ry="18"/><text text-anchor="middle" x="481" y="-29.8" font-family="Times,serif" font-size="14.00">etc</text></g>&lt;!&ndash; server&#45;&gt;facebook &ndash;&gt;<g id="edge5" class="edge"><title>server&#45;&gt;facebook</title><path fill="none" stroke="black" d="M241.694,-105.738C269.217,-103.553 309.492,-97.6793 341,-82 352.46,-76.2973 363.281,-67.3459 372.054,-58.7784"/><polygon fill="black" stroke="black" points="374.732,-61.0456 379.201,-51.4395 369.717,-56.1618 374.732,-61.0456"/></g>&lt;!&ndash; server&#45;&gt;twitter &ndash;&gt;<g id="edge6" class="edge"><title>server&#45;&gt;twitter</title><path fill="none" stroke="black" d="M233.186,-95.4822C240.148,-91.594 247.624,-86.968 254,-82 262.822,-75.1261 271.55,-66.5399 278.939,-58.5936"/><polygon fill="black" stroke="black" points="281.736,-60.7181 285.834,-50.9478 276.537,-56.0301 281.736,-60.7181"/></g>&lt;!&ndash; server&#45;&gt;etc &ndash;&gt;<g id="edge7" class="edge"><title>server&#45;&gt;etc</title><path fill="none" stroke="black" d="M242.028,-106.677C298.027,-105.61 411.013,-101.081 445,-82 454.179,-76.8464 461.776,-68.2934 467.587,-59.8859"/><polygon fill="black" stroke="black" points="470.612,-61.6508 472.988,-51.3258 464.692,-57.9155 470.612,-61.6508"/></g>&lt;!&ndash; server&#45;&gt;s3 &ndash;&gt;<g id="edge12" class="edge"><title>server&#45;&gt;s3</title><path fill="none" stroke="black" d="M184.095,-97.527C170.92,-92.4147 156.541,-86.2914 151,-82 143.003,-75.8068 135.835,-67.4301 130.04,-59.4636"/><polygon fill="black" stroke="black" points="132.853,-57.3774 124.316,-51.103 127.077,-61.3318 132.853,-57.3774"/></g>&lt;!&ndash; database &ndash;&gt;<g id="node11" class="node"><title>database</title><ellipse fill="none" stroke="black" cx="201" cy="-34" rx="40.5989" ry="18"/><text text-anchor="middle" x="201" y="-29.8" font-family="Times,serif" font-size="14.00">database</text></g>&lt;!&ndash; server&#45;&gt;database &ndash;&gt;<g id="edge14" class="edge"><title>server&#45;&gt;database</title><path fill="none" stroke="black" d="M207.867,-89.937C206.84,-81.7188 205.583,-71.66 204.426,-62.4059"/><polygon fill="black" stroke="black" points="207.893,-61.9293 203.18,-52.4407 200.948,-62.7976 207.893,-61.9293"/></g></g></svg></p>
 
@@ -101,19 +108,15 @@
 
 <p>The admin, customer admin, and website clients can probably overlap like 80%</p>
 
-<h2 id="admin">Admin</h2>
-
-<p>We&rsquo;ll need an admin client for things like</p>
-
-<ul>
-<li>setting event information (filters, branding, tweet-settings)</li>
-<li>deleting particular gifs</li>
-<li>tracking stats?</li>
-</ul>
-
 <h2 id="customer-admin">Customer Admin</h2>
 
-<p>We might want an admin client for customers with things like</p>
+<aside class="notice">
+The implementation of this feature is not currently scheduled. It may exist in a future version.
+</aside>
+
+<p>The admin client, viewers, and booths are all essentially different interfaces for communicating with the server, each tuned for a particular set of tasks.</p>
+
+<p>We might want an admin client [think &lsquo;website&rsquo;] for customers with things like</p>
 
 <ul>
 <li>promoting particular gifs to their twitter</li>
@@ -123,11 +126,19 @@
 
 <h2 id="website">Website</h2>
 
+<aside class="notice">
+The implementation of this feature is currently scheduled for development.
+</aside>
+
+<p>The admin client, viewers, and booths are all essentially different interfaces for communicating with the server, each tuned for a particular set of tasks.</p>
+
 <p>Of course, there&rsquo;s the main booth-display website at gifbooth.co</p>
 
 <h1 id="booths">Booths</h1>
 
-<p>Thanks to the growing reach of javascript, one codebase can target web, ios, android, mac, and windows. </p>
+<p>The admin client, viewers, and booths are all essentially different interfaces for communicating with the server, each tuned for a particular set of tasks.</p>
+
+<p>Thanks to the growing reach of javascript, one codebase can target web, ios, android, mac, and windows.</p>
 
 <p>Once we have a booth, any future event can target that booth. Sell the whole package (website, app, physical booth), create (or choose) some filters, and deploy to <em>all of those booths</em> in seconds.</p>
 
@@ -137,7 +148,11 @@
 
 <h2 id="web-booth">Web-booth</h2>
 
-<p>A kiosk-mode chrome window (rather than a native app) is the best solution going forward for desktop (mac-mini). </p>
+<aside class="notice">
+The implementation of this feature is not currently scheduled. It may exist in a future version.
+</aside>
+
+<p>A kiosk-mode chrome window (rather than a native app) is the best solution going forward for desktop (mac-mini).</p>
 
 <p>By making web-booth, we&rsquo;ll also have made:</p>
 
@@ -152,17 +167,61 @@
 
 <h2 id="mobile-booth">Mobile-booth</h2>
 
+<aside class="notice">
+The implementation of this feature is not currently scheduled. It may exist in a future version.
+</aside>
+
 <p>This booth could be used for putting an iPad on the wall at an event, or for selling an event-branded instagram-like booth app.</p>
 
 <p>React-native can generally target android and ios at the same time with minimal extra effort. Right now, the graphics capabilities of react-native on Android aren&rsquo;t quite where we want them, but they will be within a few months.</p>
 
 <h2 id="bullet-time-booth">Bullet-time-booth</h2>
 
-<p>This is actually a pretty straightforward one &lsquo;cuz it&rsquo;s so specialized. It wouldn&rsquo;t take more than a day to set up, but would require a lot of hardware setup. Get <em>n</em> raspberry pis with camera, print some proper cases, and have one pi coordinate the others. The shutter could be a button on a website/phone/wall/anything.</p>
+<aside class="notice">
+The implementation of this feature is not currently scheduled. It may exist in a future version.
+</aside>
+
+<p>This is actually a pretty straightforward one &#39;cuz it&rsquo;s so specialized. It wouldn&rsquo;t take more than a day to set up, but would require a lot of hardware setup. Get <em>n</em> raspberry pis with camera, print some proper cases, and have one pi coordinate the others. The shutter could be a button on a website/phone/wall/anything.</p>
+
+          <h1 id="admin">Admin</h1>
+
+<aside class="notice">
+The implementation of this feature is currently scheduled for development.
+</aside>
+
+<p>The admin client, viewers, and booths are all essentially different interfaces for communicating with the server, each tuned for a particular set of tasks.</p>
+
+<p>We&rsquo;ll need an admin client [think website] for things like</p>
+
+<ul>
+<li>setting event information (filters, branding, tweet-settings)</li>
+<li>deleting particular gifs</li>
+<li>tracking stats?</li>
+</ul>
+
+<h2 id="new-event-workflow">New Event Workflow</h2>
+
+<p>Let&rsquo;s say a customer calls up and wants a gifbooth at an event. Here are the steps that must take place.</p>
+
+<ol>
+<li>Log into the admin website</li>
+<li>Click &lsquo;new event&rsquo;
+
+<ol>
+<li>Enter metadata like date, title, links, or custom css</li>
+<li>Select existing filters from a list and/or upload some new ones</li>
+<li>Maybe create a login for the customer where they can promote gifs [&hellip;]</li>
+</ol></li>
+<li>Install and plug in the booth
+
+<ol>
+<li>The booth will automatically adopt the settings of the most current event, by date. If there are multiple events at once (permanent installation?), log into the <em>booth&rsquo;s</em> admin website and choose the correct event from a list.</li>
+</ol></li>
+</ol>
 
           <h1 id="server">Server</h1>
 
-<p>Users interact with Gifbooth <em>clients</em>. The clients, in turn, interact with the Gifbooth <em>server</em>. </p>
+<p>Users interact with Gifbooth <em>clients</em>. The clients, in turn, interact with the Gifbooth <em>server</em>.</p>
 
 <p>The server has the following primary responsibilites:</p>
 
@@ -176,9 +235,11 @@
 Most booth clients should be able to process gifs on their own, like the current OF client does, but sharing the image processing code with the server allows for surprisingly flexible potential client designs, like a remote booth over MMS, or adding graphics to images sent in over social media.
 </aside>
 
+<p><svg width="98pt" height="188pt" viewBox="0.00 0.00 97.95 188.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 184)"><title>%3</title><polygon fill="white" stroke="none" points="-4,4 -4,-184 93.9499,-184 93.9499,4 -4,4"/>&lt;!&ndash; events &ndash;&gt;<g id="node1" class="node"><title>events</title><ellipse fill="none" stroke="black" cx="32.6991" cy="-162" rx="32.8994" ry="18"/><text text-anchor="middle" x="32.6991" y="-157.8" font-family="Times,serif" font-size="14.00">events</text></g>&lt;!&ndash; gifs &ndash;&gt;<g id="node2" class="node"><title>gifs</title><ellipse fill="none" stroke="black" cx="32.6991" cy="-90" rx="27" ry="18"/><text text-anchor="middle" x="32.6991" y="-85.8" font-family="Times,serif" font-size="14.00">gifs</text></g>&lt;!&ndash; events&#45;&gt;gifs &ndash;&gt;<g id="edge1" class="edge"><title>events&#45;&gt;gifs</title><path fill="none" stroke="black" d="M26.8209,-144.055C25.9906,-136.231 25.7534,-126.748 26.1093,-117.977"/><polygon fill="black" stroke="black" points="29.6155,-118.013 26.8375,-107.789 22.6333,-117.514 29.6155,-118.013"/></g>&lt;!&ndash; filters &ndash;&gt;<g id="node3" class="node"><title>filters</title><ellipse fill="none" stroke="black" cx="59.6991" cy="-18" rx="30.0035" ry="18"/><text text-anchor="middle" x="59.6991" y="-13.8" font-family="Times,serif" font-size="14.00">filters</text></g>&lt;!&ndash; events&#45;&gt;filters &ndash;&gt;<g id="edge3" class="edge"><title>events&#45;&gt;filters</title><path fill="none" stroke="black" d="M46.818,-145.62C54.9471,-135.687 64.3835,-122.034 68.6991,-108 74.957,-87.6495 71.9314,-63.5715 67.7706,-45.5945"/><polygon fill="black" stroke="black" points="71.1298,-44.6036 65.2512,-35.7893 64.35,-46.3457 71.1298,-44.6036"/></g>&lt;!&ndash; gifs&#45;&gt;events &ndash;&gt;<g id="edge2" class="edge"><title>gifs&#45;&gt;events</title><path fill="none" stroke="black" d="M38.5607,-107.789C39.3989,-115.591 39.644,-125.067 39.296,-133.848"/><polygon fill="black" stroke="black" points="35.7884,-133.834 38.5773,-144.055 42.7711,-134.325 35.7884,-133.834"/></g>&lt;!&ndash; gifs&#45;&gt;filters &ndash;&gt;<g id="edge4" class="edge"><title>gifs&#45;&gt;filters</title><path fill="none" stroke="black" d="M39.0977,-72.411C42.2127,-64.3352 46.0328,-54.4312 49.5337,-45.3547"/><polygon fill="black" stroke="black" points="52.8256,-46.5458 53.1589,-35.9562 46.2946,-44.0267 52.8256,-46.5458"/></g></g></svg></p>
+
 <h2 id="api">API</h2>
 
-<p>Clients communicate with the Gifbooth server through a consistant HTTP API. </p>
+<p>Clients communicate with the Gifbooth server through a consistant HTTP API.</p>
 
 <p>Each API endpoint begins with the expected API version number.</p>
 
@@ -190,6 +251,10 @@ Most booth clients should be able to process gifs on their own, like the current
 </code></pre>
 
 <h2 id="todo">todo</h2>
+
+<p>This API documentation below is a living document, and not currently stable.</p>
+
+<p>The behaviours of some endpoints are not explicitly documented. If you&rsquo;re experienced with this kind of thing, you should be able to figure it out from what&rsquo;s here (the endpoint to update an event will behave like a combination of the endpoint for updating a gif ++ the endpoint for creating an event). I&rsquo;ll add more details as I work on the endpoints.</p>
 
 <ul>
 <li>Make gifs objects with metadata rather than just IDs
@@ -204,7 +269,7 @@ Most booth clients should be able to process gifs on their own, like the current
 
 <h2 id="get-gifs">GET <code class="prettyprint">/gifs</code></h2>
 
-<p>TODO</p>
+<p>Use this endpoint to get a list of all gifs.</p>
 
 <h2 id="get-gif-new-id">GET <code class="prettyprint">/gif/new-id</code></h2>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/gif/new-id"</span>
@@ -219,7 +284,7 @@ Most booth clients should be able to process gifs on their own, like the current
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Use this endpoint to create a new gif ID. </p>
+<p>Use this endpoint to create a new gif ID.</p>
 
 <p>This endpoint returns a unique identifier that can be used to upload a gif to S3.</p>
 
@@ -263,13 +328,19 @@ Since filters and branding information will be stored on the server and passed t
 
 <h2 id="get-gif-id">GET <code class="prettyprint">/gif/:id</code></h2>
 
+<p>Use this endpoint to find a particular gif.</p>
+
 <p>TODO</p>
 
 <h2 id="put-gif-id">PUT <code class="prettyprint">/gif/:id</code></h2>
 
+<p>Use this endpoint to update a particular gif.</p>
+
 <p>TODO</p>
 
 <h2 id="delete-gif-id">DELETE <code class="prettyprint">/gif/:id</code></h2>
+
+<p>Use this endpoint to delete a gif.</p>
 
 <p>TODO</p>
 
@@ -509,6 +580,8 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 
 <h2 id="post-event-new">POST <code class="prettyprint">/event/new</code></h2>
 
+<p>Use this endpoint to create an event.</p>
+
 <p>TODO</p>
 
 <h2 id="get-event-slug">GET <code class="prettyprint">/event/:slug</code></h2>
@@ -533,13 +606,21 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 
 <h2 id="put-event-slug">PUT <code class="prettyprint">/event/:slug</code></h2>
 
+<p>Use this endpoint to update an event.</p>
+
 <p>TODO</p>
 
 <h2 id="delete-event-slug">DELETE <code class="prettyprint">/event/:slug</code></h2>
 
+<p>Use this endpoint to delete an event.</p>
+
 <p>TODO</p>
 
 <h2 id="get-filters">GET <code class="prettyprint">/filters</code></h2>
+
+<aside class="notice">
+The implementation of this feature is not currently scheduled. It may exist in a future version.
+</aside>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/filters"</span>
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
 </code></pre>
@@ -566,6 +647,10 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 <p>Use this endpoint to get a list of filters.</p>
 
 <h2 id="post-filter-new">POST <code class="prettyprint">/filter/new</code></h2>
+
+<aside class="notice">
+The implementation of this feature is not currently scheduled. It may exist in a future version.
+</aside>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/filter/new"</span>
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
   -X POST
@@ -579,41 +664,43 @@ This endpoint requires a user oauth login. It must be opened in a browser. It do
 
 <p>Use this endpoint to create a new filter.</p>
 
-<h3 id="options">Options</h3>
-
-<table><thead>
-<tr>
-<th>key</th>
-<th>value</th>
-<th>option</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>type</td>
-<td>string</td>
-<td>filter type</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>filter title</td>
-</tr>
-<tr>
-<td>data</td>
-<td>???</td>
-<td>depends on the type of filter, a png for overlays or glsl for a shader</td>
-</tr>
-</tbody></table>
-
 <h2 id="get-filter-slug">GET <code class="prettyprint">/filter/:slug</code></h2>
 
-<p>TODO</p>
+<aside class="notice">
+The implementation of this feature is not currently scheduled. It may exist in a future version.
+</aside>
+<pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/filters/glitch"</span>
+  -H <span class="s2">"API-Key: s0m3th1ng"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON like the following:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shader"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"glitch"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"glitch"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://filters.gifbooth.co/glitch.glsl"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Use this endpoint to get a particular filter.</p>
 
 <h2 id="put-filter-filter-slug">PUT <code class="prettyprint">/filter/:filter-slug</code></h2>
+
+<aside class="notice">
+The implementation of this feature is not currently scheduled. It may exist in a future version.
+</aside>
+
+<p>Use this endpoint to update a filter.</p>
 
 <p>TODO</p>
 
 <h2 id="delete-filter-slug">DELETE <code class="prettyprint">/filter/:slug</code></h2>
+
+<aside class="notice">
+The implementation of this feature is not currently scheduled. It may exist in a future version.
+</aside>
 <pre class="highlight shell"><code>curl <span class="s2">"http://api.gifbooth.co/v1.0/filter/brandlogo"</span>
   -H <span class="s2">"API-Key: s0m3th1ng"</span>
   -X POST
